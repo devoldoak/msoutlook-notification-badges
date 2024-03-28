@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "MS Outlook Notification badges",
+    "version": "1.0.0",
+    "description": "Add badge to MS Outlook taskbar icon displaying unread notification.",
+    "icons": {
+        "16": "./images/icon-16.png",
+        "32": "./images/icon-32.png",
+        "48": "./images/icon-48.png",
+        "128": "./images/icon-128.png"
+    },  
+    "content_scripts": [{
+        "matches": [
+          "*://outlook.office.com/*"
+        ],
+        "run_at": "document_idle",
+        "css": [
+          "src/css/notification.css"
+        ],
+        "js": [
+          "src/scripts/storage/badge-storage.js",
+          "src/scripts/listener/window-activation.js",
+          "src/scripts/parser/outlook-web-html-parser.js",
+          "src/scripts/listener/unread-mail-watcher.js",
+          "src/scripts/display/badge-viewer.js",
+          "src/scripts/index.js"
+        ]
+    }]
+}
